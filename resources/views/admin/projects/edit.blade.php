@@ -49,14 +49,18 @@
                 <p>Seleziona i Tag:</p>
                 @foreach ($tags as $tag)
                     <div>
-                        <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="form-check-input"
-                            {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}>
+                        @if ($errors->any())
+                            <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="form-check-input"
+                                {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}>
+                        @else
+                            <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="form-check-input"
+                                {{ $project->tags->contains($tag) ? 'checked' : '' }}>
+                        @endif
                         <label for="" class="form-check-label">{{ $tag->title }}</label>
                     </div>
                 @endforeach
-            </div>
-            <button type="submit" class="btn btn-success">Save</button>
-            <button type="reset" class="btn btn-primary">Reset</button>
+                <button type="submit" class="btn btn-success">Save</button>
+                <button type="reset" class="btn btn-primary">Reset</button>
         </form>
         <script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
         <script type="text/javascript">

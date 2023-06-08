@@ -22,6 +22,7 @@
         </div>
         @if ($project->tags && count($project->tags) > 0)
             <div>
+                <h3>Tag del progetto:</h3>
                 @foreach ($project->tags as $tag)
                     <a href="#" class="badge rounded-pill text-bg-info">{{ $tag->title }}</a>
                 @endforeach
