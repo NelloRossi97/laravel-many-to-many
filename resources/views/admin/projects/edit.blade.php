@@ -6,6 +6,14 @@
             <h1>Modifica Progetto</h1>
             <a href="{{ route('admin.projects.index') }}" class="btn btn-primary">Torna ai progetti</a>
         </div>
+        {{-- Errors Section --}}
+        @if ($errors->any())
+            <div class="alert alert-danger mt-2">
+                @error('title')
+                    <p>- {{ $message }}</p>
+                @enderror
+            </div>
+        @endif
         <form action="{{ route('admin.projects.update', $project->slug) }}" method="POST">
             @csrf
             @method('PUT')

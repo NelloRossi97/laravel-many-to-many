@@ -6,6 +6,14 @@
             <h1>Inserisci nuovo Progetto</h1>
             <a href="{{ route('admin.projects.index') }}" class="btn btn-primary">Torna ai progetti</a>
         </div>
+        {{-- Errors Section --}}
+        @if ($errors->any())
+            <div class="alert alert-danger mt-2">
+                @error('title')
+                    <p>- {{ $message }}</p>
+                @enderror
+            </div>
+        @endif
         <form action="{{ route('admin.projects.store') }}" method="POST">
             @csrf
             <div class="mb-3">
