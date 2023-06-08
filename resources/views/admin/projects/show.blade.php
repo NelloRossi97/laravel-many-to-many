@@ -20,5 +20,12 @@
             <h2>Anteprima:</h2>
             <img src="{{ $project->image }}" alt="{{ $project->title }}" style="width: 100%">
         </div>
+        @if ($project->tags && count($project->tags) > 0)
+            <div>
+                @foreach ($project->tags as $tag)
+                    <a href="#" class="badge rounded-pill text-bg-info">{{ $tag->title }}</a>
+                @endforeach
+            </div>
+        @endif
     </div>
 @endsection

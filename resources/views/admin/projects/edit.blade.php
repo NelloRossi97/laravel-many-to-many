@@ -12,6 +12,9 @@
                 @error('title')
                     <p>- {{ $message }}</p>
                 @enderror
+                @error('tags')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
         @endif
         <form action="{{ route('admin.projects.update', $project->slug) }}" method="POST">
@@ -41,7 +44,16 @@
             <div class="mb-3">
                 <label for="body">Description</label>
                 <textarea name="body" id="body" rows="10" class="form-control">{{ $project['description'] }}</textarea>
-
+            </div>
+            <div class="form-group">
+                <p>Seleziona i Tag:</p>
+                @foreach ($tags as $tag)
+                    <div>
+                        <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="form-check-input"
+                            {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}>
+                        <label for="" class="form-check-label">{{ $tag->title }}</label>
+                    </div>
+                @endforeach
             </div>
             <button type="submit" class="btn btn-success">Save</button>
             <button type="reset" class="btn btn-primary">Reset</button>
